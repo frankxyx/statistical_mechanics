@@ -1,6 +1,7 @@
 # include "isingmodel.h"
 # include <iostream>
 # include <vector>
+# include <fstream>
 
 using namespace std;
 
@@ -10,7 +11,9 @@ int main() {
     double J = 1.0; // interaction energy
     int NUM_SAMPLES = 100; // number of independent configurations
 
-    vector <double> energySamples, magnetizationSamples;
+    // store the data in to .csv file
+    std::ofstream outputFile("ising_results.csv");
+    outputFile << "beta,avgEnergy,avgMagnetization\n";
 
     // loop over different beta values
     for (double beta = 0.1; beta <= 2.0; beta += 0.1) {
@@ -23,23 +26,22 @@ int main() {
             model.initializeSpins();
             model.metropolisAlgorithm(beta);
 
-            double energy = model.computeEnergy();
-            double magnetization = model.computeMagnetization();
-
-            avgEnergy += energy;
-            avgMagnetization += abs(magnetization);
+            avgEnergy += model.computeEnergy();
+            avgMagnetization += abs(model.computeMagnetization());
         }
 
         avgEnergy /= NUM_SAMPLES;
         avgMagnetization /= NUM_SAMPLES;
 
-        energySamples.push_back(avgEnergy);
-        magnetizationSamples.push_back(avgMagnetization);
+        outputFile << beta << "," << avgEnergy << "," << avgMagnetization << "\n";
 
         cout << "beta: " << beta
              << " | avg energy: " << avgEnergy
              << " | avg magnetization: " << avgMagnetization << endl;
     }
+
+    outputFile.close();
+    cout << "data saved to ising_results.csv" << endl;
 
     return 0;
 }

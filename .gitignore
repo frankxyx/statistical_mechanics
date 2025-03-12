@@ -2,4 +2,6 @@
 *.out
 *.exe
 *.bin
+*.csv
+*.png
 .DS_ Store
