@@ -16,14 +16,14 @@ int main() {
     outputFile << "beta,avgEnergy,avgMagnetization\n";
 
     // loop over different beta values
-    for (double beta = 0.1; beta <= 2.0; beta += 0.1) {
+    for (double beta = 0.1; beta <= 2.1; beta += 0.1) {
         double avgEnergy = 0.0;
         double avgMagnetization = 0.0;
 
         // generate multiple independent configurations
         for (int sample = 0; sample < NUM_SAMPLES; sample++) {
             IsingModel model(N, MC_STEPS, J);
-            model.initializeSpins();
+            model.initializeAtoms();
             model.metropolisAlgorithm(beta);
 
             avgEnergy += model.computeEnergy();

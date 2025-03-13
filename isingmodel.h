@@ -5,18 +5,18 @@
 
 class IsingModel {
 private:
-    int N; // number of spins
+    int N; // number of atoms
     int MC_STEPS;
-    double J;
-    std::vector<int> spins;
+    double J; // interaction energy
+    std::vector<int> atoms;
 
 public:
     IsingModel(int size, int steps, double interactionEnergy);
-    void initializeSpins();
+    void initializeAtoms();
     double computeEnergy() const;
     double computeMagnetization() const;
     void metropolisAlgorithm(double beta);
-    std::vector<int> getSpins() const;
+    std::vector<int> getAtoms() const;
 };
 
 #endif 
