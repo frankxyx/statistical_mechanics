@@ -7,10 +7,10 @@
 
 using namespace std;
 
-// random number generator
-random_device rd;
-mt19937 gen(rd()); 
-uniform_real_distribution<double> dist(0.0, 1.0);
+// define global random number generator
+std::random_device rd;
+std::mt19937 gen(rd()); 
+std::uniform_real_distribution<double> dist(0.0, 1.0);
 
 // constructor
 IsingModel::IsingModel(int size, int steps, double interactionEnergy)
@@ -48,8 +48,8 @@ void IsingModel::metropolisAlgorithm(double beta) {
 
     for (int step = 0; step < MC_STEPS; step++){
 
-        // randomly select an atom(entry)
-        int i = randSpin(gen); // generate a uniformly ranodm integer between 0 and N - 1
+        // randomly select an atom(entry) between 0 and N - 1
+        int i = randSpin(gen);
 
         // compute the energy change if the spin is fplipped
         int left = (i == 0) ? atoms[N - 1] : atoms[i -1];

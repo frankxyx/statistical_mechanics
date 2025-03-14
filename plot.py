@@ -1,7 +1,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data = pd.read_csv("ising_results.csv")
+csv_file = input(" Enter CSV file name: ")
+
+try:
+    data = pd.read_csv(csv_file)
+except FileNotFoundError:
+    print(f"Error: File '{csv_file}' not found.")
+    exit(1)
 
 beta = data["beta"]
 avgEnergy = data["avgEnergy"]
