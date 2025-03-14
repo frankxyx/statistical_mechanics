@@ -8,9 +8,9 @@ using namespace std;
 
 int main() {
     int N = 100; // number of spins
-    int MC_STEPS = 1000000; // number of Monte Carlo steps
+    int MC_STEPS = 10000; // number of Monte Carlo steps
     double J = 1.0; // interaction energy
-    int NUM_SAMPLES = 100; // number of independent configurations
+    int NUM_SAMPLES = 10000; // number of independent configurations
 
     int choice;
     cout << "Enter 1 for 1D Ising model and 2 for 2D Ising model: ";
